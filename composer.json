@@ -1,17 +1,17 @@
 {
     "name": "hafly/querylist",
     "description": "Simple, elegant, extensible PHP Web Scraper (crawler/spider),Use the css3 dom selector,Based on phpQuery! 简洁、优雅、可扩展的PHP采集工具(爬虫)，基于phpQuery。",
-    "keywords":["QueryList","phpQuery","spider"],
+    "keywords": [
+        "QueryList",
+        "phpQuery",
+        "spider"
+    ],
     "homepage": "http://querylist.cc",
     "require": {
-        "PHP":">=8.0",
+        "php": ">=8.0",
+        "alapi/g-http": "^1.0",
         "jaeger/phpquery-single": "^1",
-        "jaeger/g-http": "^1.1",
-        "ext-dom": "*",
         "illuminate/collections": ">5.0"
-    },
-    "require-dev": {
-        "symfony/var-dumper": "^3.3"
     },
     "license": "MIT",
     "authors": [
@@ -20,9 +20,9 @@
             "email": "JaegerCode@gmail.com"
         }
     ],
-    "autoload":{
-        "psr-4":{
-            "QL\\":"src"
+    "autoload": {
+        "psr-4": {
+            "QL\\": "src"
         }
     },
     "autoload-dev": {
