@@ -7,9 +7,8 @@
 
 namespace QL\Dom;
 
-use phpDocumentor\Reflection\Types\Null_;
 use phpQueryObject;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 /**
  * Class Elements
@@ -142,7 +141,7 @@ class Elements
 
     /**
      * Elements constructor.
-     * @param $elements
+     * @param phpQueryObject $elements
      */
     public function __construct(phpQueryObject $elements)
     {
@@ -188,14 +187,15 @@ class Elements
      * Iterating elements
      *
      * @param $callback
-     * @return \Illuminate\Support\Collection|\Tightenco\Collect\Support\Collection
+     * @return Collection
      */
     public function map($callback)
     {
         $collection = new Collection();
-        $this->elements->each(function ($dom) use (& $collection, $callback) {
+        $fun = function ($dom) use (& $collection, $callback) {
             $collection->push($callback(new self(pq($dom))));
-        });
+        };
+        $this->elements->each($fun);
         return $collection;
     }
 
@@ -203,7 +203,7 @@ class Elements
      * Gets the attributes of all the elements
      *
      * @param string $attr HTML attribute name
-     * @return \Illuminate\Support\Collection|\Tightenco\Collect\Support\Collection
+     * @return Collection
      */
     public function attrs($attr)
     {
@@ -215,7 +215,7 @@ class Elements
     /**
      * Gets the text of all the elements
      *
-     * @return \Illuminate\Support\Collection|\Tightenco\Collect\Support\Collection
+     * @return Collection
      */
     public function texts()
     {
@@ -227,7 +227,7 @@ class Elements
     /**
      * Gets the html of all the elements
      *
-     * @return \Illuminate\Support\Collection|\Tightenco\Collect\Support\Collection
+     * @return Collection
      */
     public function htmls()
     {
@@ -239,7 +239,7 @@ class Elements
     /**
      * Gets the htmlOuter of all the elements
      *
-     * @return \Illuminate\Support\Collection|\Tightenco\Collect\Support\Collection
+     * @return Collection
      */
     public function htmlOuters()
     {

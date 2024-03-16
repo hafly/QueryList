@@ -1,4 +1,11 @@
-<div id="one">
+<?php
+use QL\QueryList;
+
+set_time_limit(0);
+
+require __DIR__.'/../vendor/autoload.php';
+
+$html = '<div id="one">
     <ul>
         <li>
             <a href="http://querylist.cc">QueryList官网</a>
@@ -13,4 +20,14 @@
             <img src="http://querylist.com/3.jpg" alt="这是图片3" abc="这是一个自定义属性3">
         </li>
     </ul>
-</div>
+</div>';
+$rules = [
+    'a' => ['a','text'],
+    'img_src' => ['img','src'],
+    'img_alt' => ['img','alt']
+];
+
+$range = 'ul>li';
+$data = QueryList::rules($rules)->range($range)->html($html)->query()->getData();
+
+var_dump($data);
